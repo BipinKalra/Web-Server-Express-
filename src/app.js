@@ -62,7 +62,8 @@ app.get("/about", (req, res) => {
 
 app.get("/help", (req, res) => {
   res.render("help", {
-    title: "Help Page"
+    title: "Help Page",
+    name: "Bipin Kalra"
   })
 })
 
@@ -75,16 +76,18 @@ app.get("/weather", (req, res) => {
 
 // * is a wildcard character provided by express which says that match anything that hasn't been matched so far
 app.get("/help/*", (req, res) => {
-  res.render("error", {
+  res.render("404", {
     title: "Error!",
-    errorMsg: "Help article not found!"
+    errorMsg: "Help article not found!",
+    name: "Bipin Kalra"
   })
 })
 
 app.get("*", (req, res) => {
-  res.render("error", {
+  res.render("404", {
     title: "Error!",
-    errorMsg: "404 Page Not Found!"
+    errorMsg: "404 Page Not Found!",
+    name: "Bipin Kalra"
   })
 })
 
