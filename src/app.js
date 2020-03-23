@@ -17,7 +17,7 @@ const viewsPath = path.join(__dirname, "../templates/views")
 const partialsPath = path.join(__dirname, "../templates/partials")
 
 // Setup handlebars engine and views location
-app.set("view engine","hbs")
+app.set("view engine", "hbs")
 app.set("views", viewsPath)
 hbs.registerPartials(partialsPath)
 
@@ -48,7 +48,7 @@ app.get("", (req, res) => {
 
   // To add dynamic content as well
   res.render("index", {
-    title: "Weather App", 
+    title: "Weather App",
     name: "Bipin Kalra"
   })
 })
@@ -70,6 +70,21 @@ app.get("/weather", (req, res) => {
   res.send({
     Forevast: "Something",
     location: "Delhi"
+  })
+})
+
+// * is a wildcard character provided by express which says that match anything that hasn't been matched so far
+app.get("/help/*", (req, res) => {
+  res.render("error", {
+    title: "Error!",
+    errorMsg: "Help article not found!"
+  })
+})
+
+app.get("*", (req, res) => {
+  res.render("error", {
+    title: "Error!",
+    errorMsg: "404 Page Not Found!"
   })
 })
 
