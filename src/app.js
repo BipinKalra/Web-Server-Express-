@@ -1,6 +1,8 @@
-const path = require("path")
-const express = require("express")
-const hbs = require("hbs")
+const path = require("path"),
+  express = require("express"),
+  hbs = require("hbs"),
+  geocode = require("./utils/geocode"),
+  weather = require("./utils/weather");
 
 //Default variables in node
 // console.log(__dirname) // Current directory absolute location
@@ -68,11 +70,57 @@ app.get("/help", (req, res) => {
 })
 
 app.get("/weather", (req, res) => {
-  res.send({
-    Forevast: "Something",
-    location: "Delhi"
+  if (!req.query.address) {
+    return res.send({
+      error: "You need to provide an address!"
+    })
+  }
+
+  geocode(req.query.address, (error, {latitude, longitude, location}) => {
+    if (error) {
+      return res.send({
+        error
+      })
+    }
+
+    weather(latitude, longitude, (error, {temperature, precipProbability}) => {
+      if (error) {
+        return res.send({
+          error
+        })
+      }
+
+      res.send({
+        temperature,
+        precipProbability,
+        address: req.query.address,
+        location
+      })
+    })
   })
+
+  // res.send({
+  //   Forecast: "Something",
+  //   location: "Delhi",
+  //   address: req.query.address
+  // })
 })
+
+// Using Query string recieved along with request to perform some action
+// app.get("/products", (req, res) => {
+//   // console.log(req.query) // this variable contains the query strings in form of an object
+
+//   if (!req.query.search) {
+//     return res.send({
+//       error: "You must provide a search term!"
+//     })
+//   }
+
+//   console.log(req.query.search)
+//   res.send({
+//     products: []
+//   })
+// })
 
 // * is a wildcard character provided by express which says that match anything that hasn't been matched so far
 app.get("/help/*", (req, res) => {
