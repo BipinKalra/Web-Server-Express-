@@ -13,6 +13,9 @@ const path = require("path"),
 // Expess has just one function express() and the rest of the functionality needs to be added using the app variable
 const app = express()
 
+// This constant is defined to use dynamic port number assigned by heroku instead of using local port
+const port = process.env.PORT || 9000 // 9000 is the fallback value which would be used locally
+
 // Define paths for express config
 const publicPath = path.join(__dirname, "../public")
 const viewsPath = path.join(__dirname, "../templates/views")
@@ -139,7 +142,7 @@ app.get("*", (req, res) => {
   })
 })
 
-app.listen(9000, () => {
-  console.log("Server up on port 9000!")
+app.listen(port, () => {
+  console.log("Server up on port" + port)
 })
 

@@ -23,7 +23,9 @@ weatherForm.addEventListener("submit", (e) => {
   messageOne.textContent = "Loading..."
   messageTwo.textContent = ""
 
-  fetch("http://localhost:9000/weather?address=" + location).then((response) => {
+  // The call below needs to be changed in order for it to run fine on heroku
+  // instead of using localhost in the addess in fetch we can specify relative path
+  fetch("/weather?address=" + location).then((response) => {
 
     response.json().then((data) => {
       if (data.error) {
