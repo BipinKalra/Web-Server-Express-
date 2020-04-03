@@ -1,15 +1,3 @@
-// This is function to fetch data from an server endpoint and is called from client side js
-// That means that node doesn't have anything known as fetch but all modern browsers do!
-
-// fetch("http://puzzle.mead.io/puzzle").then((response) => {
-//   // Here callback is provided in the .then method which has access to response
-
-//   // Herein then would run once the json data has arrived and has been parsed
-//   response.json().then((data) => {
-//     console.log(data)
-//   })
-// })
-
 const weatherForm = document.querySelector("form")
 const search = document.querySelector("input")
 const messageOne = document.querySelector("#message-1")
@@ -41,3 +29,17 @@ weatherForm.addEventListener("submit", (e) => {
     })
   })
 })
+
+// DEPRECATED CODE FOR LEARNING
+
+// This is function to fetch data from an server endpoint and is called from client side js
+// That means that node doesn't have anything known as fetch but all modern browsers do!
+
+// fetch("http://puzzle.mead.io/puzzle").then((response) => {
+//   // Here callback is provided in the .then method which has access to response
+
+//   // Herein then would run once the json data has arrived and has been parsed
+//   response.json().then((data) => {
+//     console.log(data)
+//   })
+// })

@@ -29,25 +29,6 @@ hbs.registerPartials(partialsPath)
 // Setup static directory to be served by express
 app.use(express.static(publicPath))
 
-// Get defines what to do for a particular route
-// app.get("", (req, res) => {
-//   res.send("<h1>Hello from Express!</h1>") // Sending HTML using res.send
-// })
-
-// index.html is automatically bound to the route url and thus the above call get function doesn't work in case
-// of having setup public index.html file
-
-// app.get("/help", (req, res) => {
-//   res.send({
-//     name: "Bipin",
-//     age: 22
-//   }) // Sending JSON using res.send
-// })
-
-// app.get("/about", (req, res) => {
-//   res.send("<h1>About Page!</h1>")
-// })
-
 app.get("", (req, res) => {
   // res.render("index") // Used to render html or hbs documents in our case
 
@@ -109,22 +90,6 @@ app.get("/weather", (req, res) => {
   // })
 })
 
-// Using Query string recieved along with request to perform some action
-// app.get("/products", (req, res) => {
-//   // console.log(req.query) // this variable contains the query strings in form of an object
-
-//   if (!req.query.search) {
-//     return res.send({
-//       error: "You must provide a search term!"
-//     })
-//   }
-
-//   console.log(req.query.search)
-//   res.send({
-//     products: []
-//   })
-// })
-
 // * is a wildcard character provided by express which says that match anything that hasn't been matched so far
 app.get("/help/*", (req, res) => {
   res.render("404", {
@@ -145,4 +110,42 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
   console.log("Server up on port" + port)
 })
+
+// DEPRECATED CODE FOR LEARNING
+
+// Get defines what to do for a particular route
+// app.get("", (req, res) => {
+//   res.send("<h1>Hello from Express!</h1>") // Sending HTML using res.send
+// })
+
+// index.html is automatically bound to the route url and thus the above call get function doesn't work in case
+// of having setup public index.html file
+
+// app.get("/help", (req, res) => {
+//   res.send({
+//     name: "Bipin",
+//     age: 22
+//   }) // Sending JSON using res.send
+// })
+
+// app.get("/about", (req, res) => {
+//   res.send("<h1>About Page!</h1>")
+// })
+
+
+// Using Query string recieved along with request to perform some action
+// app.get("/products", (req, res) => {
+//   // console.log(req.query) // this variable contains the query strings in form of an object
+
+//   if (!req.query.search) {
+//     return res.send({
+//       error: "You must provide a search term!"
+//     })
+//   }
+
+//   console.log(req.query.search)
+//   res.send({
+//     products: []
+//   })
+// })
 
